@@ -1,7 +1,8 @@
 package color
 
 const (
-	prefix = "\x1b["
+	escape = "\x1b"
+	prefix = "["
 	suffix = "m"
 )
 
@@ -31,7 +32,7 @@ const (
 	White         = 97
 )
 
-func Sequence(code int) string { return prefix + strconv.Itoa(code) + suffix }
+func Sequence(code int) string { return escape + prefix + strconv.Itoa(code) + suffix }
 
 func Foreground(color int, text string) string { return ForegroundOn(color) + text + ForegroundOff() }
 func Background(color int, text string) string { return BackgroundOn(color) + text + BackgroundOff() }
