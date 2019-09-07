@@ -52,13 +52,15 @@ const (
 
 // Aliasing
 const (
+	Brown  = Olive
 	Normal = Reset
 	Purple = Fuchsia
 )
 
-func Bg(code int) int                    { return (code + 10) }
-func Sequence(code int) string           { return prefix + strconv.Itoa(code) + suffix }
-func Color(code int, text string) string { return Sequence(code) + text + Sequence(Default) }
+func Bg(code int) int                   { return (code + 10) }
+func Sequence(code int) string          { return prefix + strconv.Itoa(code) + suffix }
+func Default(text string) string        { return Sequence(Default) + text }
+func Text(code int, text string) string { return Sequence(code) + text + Sequence(Default) }
 
 // Foreground Colorization
 func Black(text string) string    { return Color(Black, text) }
