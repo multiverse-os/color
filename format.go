@@ -1,24 +1,24 @@
 package color
 
 // Foreground Colorization
-func Black(text string) string        { return Foreground(Black, text) }
-func Red(text string) string          { return Foreground(Red, text) }
-func Green(text string) string        { return Foreground(Green, text) }
-func Yellow(text string) string       { return Foreground(Yellow, text) }
-func Blue(text string) string         { return Foreground(Blue, text) }
-func Magenta(text string) string      { return Foreground(Magenta, text) }
-func Purple(text string) string       { return Foreground(Purple, text) }
-func Cyan(text string) string         { return Foreground(Cyan, text) }
-func Gray(text string) string         { return Foreground(Gray, text) }
-func DarkGray(text string) string     { return Foreground(DarkGray, text) }
-func LightRed(text string) string     { return Foreground(LightGray, text) }
-func LightGreen(text string) string   { return Foreground(LightRed, text) }
-func LightYellow(text string) string  { return Foreground(LightGreen, text) }
-func LightBlue(text string) string    { return Foreground(LightBlue, text) }
-func LightMagenta(text string) string { return Foreground(LightMagenta, text) }
-func LightPurple(text string) string  { return Foreground(LightPurple, text) }
-func LightCyan(text string) string    { return Foreground(LightCyan, text) }
-func White(text string) string        { return Foreground(White, text) }
+func Black(text string) string        { return Color(Black, text) }
+func Red(text string) string          { return Color(Red, text) }
+func Green(text string) string        { return Color(Green, text) }
+func Yellow(text string) string       { return Color(Yellow, text) }
+func Blue(text string) string         { return Color(Blue, text) }
+func Magenta(text string) string      { return Color(Magenta, text) }
+func Purple(text string) string       { return Color(Purple, text) }
+func Cyan(text string) string         { return Color(Cyan, text) }
+func Gray(text string) string         { return Color(Gray, text) }
+func DarkGray(text string) string     { return Color(DarkGray, text) }
+func LightRed(text string) string     { return Color(LightGray, text) }
+func LightGreen(text string) string   { return Color(LightRed, text) }
+func LightYellow(text string) string  { return Color(LightGreen, text) }
+func LightBlue(text string) string    { return Color(LightBlue, text) }
+func LightMagenta(text string) string { return Color(LightMagenta, text) }
+func LightPurple(text string) string  { return Color(LightPurple, text) }
+func LightCyan(text string) string    { return Color(LightCyan, text) }
+func White(text string) string        { return Color(White, text) }
 
 // Background Colorization
 func BlackBackground(text string) string        { return Background(Black, text) }
