@@ -9,25 +9,28 @@ const (
 // Naming uses websafe color names for consistency across platforms and since
 // most developers at this point have more experience with those colors
 const (
-	Reset        = 0
-	Black        = 30
-	Maroon       = 31
-	Green        = 32
-	Olive        = 33
-	NavyBlue     = 34
-	Magenta      = 35
-	Cyan         = 36
-	Silver       = 37
-	DefaultColor = 39
-	//BlackBackground         = 40
-	//RedBackground           = 41
-	//GreenBackground         = 42
-	//YellowBackground        = 43
-	//BlueBackground          = 44
-	//MagentaBackground       = 45
-	//CyanBackground          = 46
-	//GrayBackground          = 47
-	//BackgroundOff           = 49
+	Reset = 0
+	// Primary ANSI 8 Colors
+	Black    = 30
+	Maroon   = 31
+	Green    = 32
+	Olive    = 33
+	NavyBlue = 34
+	Magenta  = 35
+	Cyan     = 36
+	Silver   = 37
+	Default  = 39
+	// Primary ANSI 8 Background Colors
+	//BlackBg    = 40
+	//MaroonBg   = 41
+	//GreenBg    = 42
+	//OliveBg    = 43
+	//NavyBlueBg = 44
+	//MagentaBg  = 45
+	//CyanBg     = 46
+	//SilverBg   = 47
+	//DefaultBg  = 49
+	// Secondary ANSI 8 Colors
 	Gray    = 90
 	Red     = 91
 	Lime    = 92
@@ -36,14 +39,15 @@ const (
 	Fuchsia = 95
 	Aqua    = 96
 	White   = 97
-	//DarkGrayBackground      = 100
-	//BrightRedBackground     = 101
-	//BrightGreenBackground   = 102
-	//BrightYellowBackground  = 103
-	//BrightBlueBackground    = 104
-	//BrightMagentaBackground = 105
-	//BrightCyanBackground    = 106
-	//WhiteBackground         = 107
+	// Secondary ANSI 8 Background Colors
+	//GrayBg    = 100
+	//RedBg     = 101
+	//LimeBg    = 102
+	//YellowBg  = 103
+	//BlueBg    = 104
+	//FuchsiaBg = 105
+	//AquaBg    = 106
+	//WhiteBg   = 107
 )
 
 // Aliasing
@@ -52,70 +56,44 @@ const (
 	Purple = Fuchsia
 )
 
-func BgCode(code int) int { return (code + 10) }
-
-func Sequence(code int) string { return escape + prefix + strconv.Itoa(code) + suffix }
-
-func Reset(text string) string          { return Reset.Sequence() + text }
-func DefaultColor(text string) string   { return Sequence(DefaultColor.Int()) + text }
-func DefaultBgColor(text string) string { return Sequence(BgCode(DefaultColor.Int())) + text }
-
-func Fg(code int, text string) string {
-	return Sequence(code) + text + Sequence(DefaultColor.Int())
-}
-func Bg(code int, text string) string {
-	return Sequence(BgCode(code)) + text + Sequence(BgCode(DefaultColor.Int()))
-}
-
-func Color(color int, text string) string {
-	switch code := c.Int(); {
-	case Reset.Int():
-		return Reset(text)
-	case (code >= 30 && code <= 37), (code >= 90 && code <= 97):
-		return Fg(c, text)
-	case DefaultColor.Int():
-		return DefaultColor(text)
-	case (code >= 40 && code <= 47), (code >= 100 && code <= 107):
-		return Bg(c, text)
-	default:
-		return text
-	}
-}
+func Bg(code int) int                    { return (code + 10) }
+func Sequence(code int) string           { return prefix + strconv.Itoa(code) + suffix }
+func Color(code int, text string) string { return Sequence(code) + text + Sequence(Default) }
 
 // Foreground Colorization
-func Black(text string) string    { return Fg(Black, text) }
-func Maroon(text string) string   { return Fg(Maroon, text) }
-func Green(text string) string    { return Fg(Green, text) }
-func Olive(text string) string    { return Fg(Olive, text) }
-func NavyBlue(text string) string { return Fg(NavyBlue, text) }
-func Magenta(text string) string  { return Fg(Magenta, text) }
-func Cyan(text string) string     { return Fg(Cyan, text) }
-func Silver(text string) string   { return Fg(Silver, text) }
-func Gray(text string) string     { return Fg(Gray, text) }
-func Red(text string) string      { return Fg(Red, text) }
-func Lime(text string) string     { return Fg(Lime, text) }
-func Yellow(text string) string   { return Fg(Yellow, text) }
-func Blue(text string) string     { return Fg(Blue, text) }
-func Purple(text string) string   { return Fg(Purple, text) }
-func Fuchsia(text string) string  { return Fg(Fuchsia, text) }
-func Aqua(text string) string     { return Fg(Aqua, text) }
-func White(text string) string    { return Fg(White, text) }
+func Black(text string) string    { return Color(Black, text) }
+func Maroon(text string) string   { return Color(Maroon, text) }
+func Green(text string) string    { return Color(Green, text) }
+func Olive(text string) string    { return Color(Olive, text) }
+func NavyBlue(text string) string { return Color(NavyBlue, text) }
+func Magenta(text string) string  { return Color(Magenta, text) }
+func Cyan(text string) string     { return Color(Cyan, text) }
+func Silver(text string) string   { return Color(Silver, text) }
+func Gray(text string) string     { return Color(Gray, text) }
+func Red(text string) string      { return Color(Red, text) }
+func Lime(text string) string     { return Color(Lime, text) }
+func Yellow(text string) string   { return Color(Yellow, text) }
+func Blue(text string) string     { return Color(Blue, text) }
+func Purple(text string) string   { return Color(Purple, text) }
+func Fuchsia(text string) string  { return Color(Fuchsia, text) }
+func Aqua(text string) string     { return Color(Aqua, text) }
+func White(text string) string    { return Color(White, text) }
 
 // Background Colorization
-func BlackBg(text string) string    { return Bg(Black, text) }
-func MaroonBg(text string) string   { return Bg(Maroon, text) }
-func GreenBg(text string) string    { return Bg(Green, text) }
-func OliveBg(text string) string    { return Bg(Olive, text) }
-func NavyBlueBg(text string) string { return Bg(NavyBlue, text) }
-func MagentaBg(text string) string  { return Bg(Magenta, text) }
-func CyanBg(text string) string     { return Bg(Cyan, text) }
-func SilverBg(text string) string   { return Bg(Silver, text) }
-func GrayBg(text string) string     { return Bg(Gray, text) }
-func RedBg(text string) string      { return Bg(Red, text) }
-func LimeBg(text string) string     { return Bg(Lime, text) }
-func YellowBg(text string) string   { return Bg(Yellow, text) }
-func BlueBg(text string) string     { return Bg(Blue, text) }
-func PurpleBg(text string) string   { return Bg(Purple, text) }
-func FuchsiaBg(text string) string  { return Bg(Fuchsia, text) }
-func AquaBg(text string) string     { return Bg(Aqua, text) }
-func WhiteBg(text string) string    { return Bg(White, text) }
+func BlackBg(text string) string    { return Color(Bg(Black), text) }
+func MaroonBg(text string) string   { return Color(Bg(Maroon), text) }
+func GreenBg(text string) string    { return Color(Bg(Green), text) }
+func OliveBg(text string) string    { return Color(Bg(Olive), text) }
+func NavyBlueBg(text string) string { return Color(Bg(NavyBlue), text) }
+func MagentaBg(text string) string  { return Color(Bg(Magenta), text) }
+func CyanBg(text string) string     { return Color(Bg(Cyan), text) }
+func SilverBg(text string) string   { return Color(Bg(Silver), text) }
+func GrayBg(text string) string     { return Color(Bg(Gray), text) }
+func RedBg(text string) string      { return Color(Bg(Red), text) }
+func LimeBg(text string) string     { return Color(Bg(Lime), text) }
+func YellowBg(text string) string   { return Color(Bg(Yellow), text) }
+func BlueBg(text string) string     { return Color(Bg(Blue), text) }
+func PurpleBg(text string) string   { return Color(Bg(Purple), text) }
+func FuchsiaBg(text string) string  { return Color(Bg(Fuchsia), text) }
+func AquaBg(text string) string     { return Color(Bg(Aqua), text) }
+func WhiteBg(text string) string    { return Color(Bg(White), text) }
