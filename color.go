@@ -65,24 +65,24 @@ const (
 
 func Bg(code int) int          { return (code + 10) }
 func Sequence(code int) string { return prefix + strconv.Itoa(code) + suffix }
-func Reset() string            { return Sequence(reset) }
+func Reset() string            { return Sequence(RESET) }
 
 func Open(code int) string { return Sequence(code) }
 func Close(code int) string {
 	switch {
-	case (code >= 40 && code <= 49), (code >= 100 && code <= 107):
-		return Sequence(Bg(off))
+	case (code >= 40 && code < 49), (code >= 100 && code < 107):
+		return Sequence(Bg(OFF))
 	default:
-		return ""
+		return Sequence(RESET)
 	}
 }
 
 func Text(code int, text string) string {
 	switch {
 	case (code >= 30 && code <= 39), (code >= 90 && code <= 97):
-		return Open(code) + text + Close(off)
+		return Open(code) + text + Close(OFF)
 	case (code >= 40 && code <= 49), (code >= 100 && code <= 107):
-		return Sequence(code) + text + Sequence(Bg(off))
+		return Sequence(code) + text + Sequence(Bg(OFF))
 	default:
 		return text
 	}
