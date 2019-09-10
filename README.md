@@ -5,6 +5,29 @@
 
 A minimal ANSI text color library for use with scripts or other Go software that would benefit from enhance visual presenation but does not warrant including the CLI library
 
+### Usage
+There are a variety of ways one can use the library, the easiest way is to use
+the build in functions for each color. After importing the library:
+
+```
+    color.Red("[error] failed to do something")
+```
+
+Futhermore, it can be further simplified by doing an "\_" import for an even
+easier: 
+
+```
+  import (
+    _ "github.com/multiverse-os/color"
+)
+
+func main() {
+    fmt.Println("Normal color, but then suddenly", Green("the text turns
+    green"), "and back to normal")
+}
+
+```
+
 ### Example
 A simple example that is also uses all the color and style based ANSI codes.
 This however leaves out the other functionality relating to cursor, and other
