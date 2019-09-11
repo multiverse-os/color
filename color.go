@@ -74,9 +74,9 @@ func Close(code int) string {
 func Text(code int, text string) string {
 	switch {
 	case (code >= 30 && code <= 39), (code >= 90 && code <= 97):
-		return Open(code) + text + Close(OFF)
+		return Open(code) + text + Close(off)
 	case (code >= 40 && code <= 49), (code >= 100 && code <= 107):
-		return Sequence(code) + text + Sequence(Bg(OFF))
+		return Sequence(code) + text + Sequence(Bg(off))
 	default:
 		return text
 	}
@@ -87,7 +87,7 @@ func Black(text string) string   { return Text(black, text) }
 func Maroon(text string) string  { return Text(maroon, text) }
 func Green(text string) string   { return Text(green, text) }
 func Olive(text string) string   { return Text(olive, text) }
-func Brown(text string) string   { return Text(brown, text) }
+func Brown(text string) string   { return Text(olive, text) }
 func Blue(text string) string    { return Text(blue, text) }
 func Magenta(text string) string { return Text(magenta, text) }
 func Cyan(text string) string    { return Text(cyan, text) }
@@ -97,7 +97,7 @@ func Red(text string) string     { return Text(red, text) }
 func Lime(text string) string    { return Text(lime, text) }
 func Yellow(text string) string  { return Text(yellow, text) }
 func SkyBlue(text string) string { return Text(skyBlue, text) }
-func Purple(text string) string  { return Text(purple, text) }
+func Purple(text string) string  { return Text(fuchsia, text) }
 func Fuchsia(text string) string { return Text(fuchsia, text) }
 func Aqua(text string) string    { return Text(aqua, text) }
 func White(text string) string   { return Text(white, text) }
@@ -107,7 +107,7 @@ func BlackBg(text string) string   { return Text(Bg(black), text) }
 func MaroonBg(text string) string  { return Text(Bg(maroon), text) }
 func GreenBg(text string) string   { return Text(Bg(green), text) }
 func OliveBg(text string) string   { return Text(Bg(olive), text) }
-func BrownBg(text string) string   { return Text(Bg(brown), text) }
+func BrownBg(text string) string   { return Text(Bg(olive), text) }
 func BlueBg(text string) string    { return Text(Bg(blue), text) }
 func MagentaBg(text string) string { return Text(Bg(magenta), text) }
 func CyanBg(text string) string    { return Text(Bg(cyan), text) }
@@ -117,7 +117,7 @@ func RedBg(text string) string     { return Text(Bg(red), text) }
 func LimeBg(text string) string    { return Text(Bg(lime), text) }
 func YellowBg(text string) string  { return Text(Bg(yellow), text) }
 func SkyBlueBg(text string) string { return Text(Bg(skyBlue), text) }
-func PurpleBg(text string) string  { return Text(Bg(purple), text) }
+func PurpleBg(text string) string  { return Text(Bg(fuchsia), text) }
 func FuchsiaBg(text string) string { return Text(Bg(fuchsia), text) }
 func AquaBg(text string) string    { return Text(Bg(aqua), text) }
 func WhiteBg(text string) string   { return Text(Bg(white), text) }
