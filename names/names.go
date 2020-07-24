@@ -359,8 +359,6 @@ func (self Name) String() string {
 		return "darkgray"
 	case Darkgreen:
 		return "darkgreen"
-	case Darkgrey:
-		return "darkgrey"
 	case Darkkhaki:
 		return "darkkhaki"
 	case Darkmagenta:
@@ -559,10 +557,8 @@ func (self Name) String() string {
 		return "skyblue"
 	case Slateblue:
 		return "slateblue"
-	case Slategray:
+	case Slategray, Slategrey:
 		return "slategray"
-	case Slategrey:
-		return "slategrey"
 	case Snow:
 		return "snow"
 	case Springgreen:
